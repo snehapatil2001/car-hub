@@ -1,20 +1,27 @@
-import { CarProps } from "@/types";
+import { CarProps, FilterProps } from "@/types";
 
-export async function fetchCars() {
-	const headers = {
-		'X-RapidAPI-Key': '68ca7db2a4msh3f518b58bbb6c51p121669jsn7f6bd0b2f4f7',
-		'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
-	}
-
-	const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=q3', {
-		method: 'GET',
+export async function fetchCars(filters: FilterProps) {
+	const { manufacturer, year, model, limit, fuel } = filters;
+  
+	// Set the required headers for the API request
+	const headers: HeadersInit = {
+	  "X-RapidAPI-Key":'68ca7db2a4msh3f518b58bbb6c51p121669jsn7f6bd0b2f4f7',
+	  "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
+	};
+  
+	// Set the required headers for the API request
+	const response = await fetch(
+	  `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
+	  {
 		headers: headers,
-	})
-
+	  }
+	);
+  
+	// Parse the response as JSON
 	const result = await response.json();
-
+  
 	return result;
-}
+  }
 
 export const generateCarImageUrl = (car: CarProps, angle?: string) => {
 	const url = new URL("https://cdn.imagin.studio/getimage");
