@@ -28,26 +28,31 @@ export interface CarProps {
 	model: string;
 	transmission: string;
 	year: number;
-  }
+}
 
-  export interface FilterProps {
+export interface FilterProps {
 	manufacturer?: string;
 	year?: number;
 	model?: string;
 	limit?: number;
 	fuel?: string;
-  }
+}
 
-  export interface HomeProps {
+export interface HomeProps {
 	searchParams: FilterProps;
-  }
+}
 
-  export interface OptionProps {
+export interface OptionProps {
 	title: string;
 	value: string;
-  }
-  
-  export interface CustomFilterProps {
+}
+
+export interface CustomFilterProps {
 	title: string;
 	options: OptionProps[];
-  }
+}
+
+export interface ShowMoreProps {
+	pageNumber: number;
+	isNext: boolean;
+}
